@@ -1,190 +1,439 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raiden vs Yixuan Tic Tac Toe</title>
+<title>Raiden Shogun vs Yixuan Tic Tac Toe</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #3b2358, #8b6bb5);
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-body{
-background:linear-gradient(135deg,#1a1038,#2d1b69,#4c2d91);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+
+.game-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
 }
 
-.game{
-display:flex;
-align-items:center;
-gap:35px;
+
+/* Game panel */
+.container {
+
+    text-align: center;
+    padding: 35px;
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+
+    border-radius: 25px;
 }
 
-.side img{
-width:220px;
-height:330px;
-object-fit:cover;
-border-radius:18px;
-box-shadow:0 15px 30px rgba(0,0,0,.35);
+
+/* Title */
+
+h1 {
+    margin-top: 0;
 }
 
-.container{
-width:420px;
-padding:25px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
-border-radius:20px;
-box-shadow:0 15px 30px rgba(0,0,0,.3);
-}
 
-h1{
-text-align:center;
-color:white;
-margin-bottom:20px;
-}
+/* Turn text */
 
-.status{
-text-align:center;
-color:#e9d5ff;
-font-size:20px;
-margin-bottom:20px;
-font-weight:bold;
-}
+.turn {
 
-.board{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-}
-
-.cell{
-aspect-ratio:1;
-border:none;
-border-radius:14px;
-font-size:55px;
-background:rgba(255,255,255,.08);
-color:white;
-cursor:pointer;
-transition:.2s;
-}
-
-.cell:hover{
-background:rgba(255,255,255,.15);
-transform:scale(1.03);
-}
-
-.win{
-background:#8b5cf6!important;
-}
-
-#restart{
-margin-top:20px;
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:#7c3aed;
-color:white;
-font-size:17px;
-cursor:pointer;
-}
-
-#restart:hover{
-background:#6d28d9;
-}
-
-@media(max-width:900px){
-
-.game{
-flex-direction:column;
-}
-
-.side img{
-width:180px;
-height:250px;
-}
+    font-size: 22px;
+    margin-bottom: 20px;
 
 }
+
+
+
+/* Board */
+
+.board {
+
+    display: grid;
+    grid-template-columns: repeat(3,100px);
+    gap: 10px;
+
+}
+
+
+/* Cells */
+
+.cell {
+
+    width:100px;
+    height:100px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:45px;
+
+    cursor:pointer;
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius:15px;
+
+    transition:0.2s;
+
+}
+
+
+.cell:hover {
+
+    background:rgba(255,255,255,0.3);
+
+}
+
+
+
+/* Button */
+
+button {
+
+    margin-top:25px;
+
+    padding:12px 30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#cda7ff;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+button:hover {
+
+    background:#e0c7ff;
+
+}
+
+
+
+/* Right picture */
+
+.character img {
+
+    width:380px;
+
+    height:260px;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+
+}
+
 
 </style>
 
 </head>
 
+
+
 <body>
 
-<div class="game">
 
-<div class="side">
-<img src="Genshin-Impact-Raiden-Shogun-materials,-kit,-and-Constellations-cover.webp">
-</div>
+<div class="game-container">
+
+
 
 <div class="container">
 
-<h1>Tic Tac Toe</h1>
 
-<div class="status">⚡ Raiden's Turn</div>
+<h1>
+Raiden Shogun vs Yixuan
+</h1>
+
+
+<div class="turn" id="turn">
+Raiden Shogun's Turn
+</div>
+
+
 
 <div class="board">
 
-<button class="cell"></button>
-<button class="cell"></button>
-<button class="cell"></button>
 
-<button class="cell"></button>
-<button class="cell"></button>
-<button class="cell"></button>
+<div class="cell" onclick="move(0)"></div>
+<div class="cell" onclick="move(1)"></div>
+<div class="cell" onclick="move(2)"></div>
 
-<button class="cell"></button>
-<button class="cell"></button>
-<button class="cell"></button>
+
+<div class="cell" onclick="move(3)"></div>
+<div class="cell" onclick="move(4)"></div>
+<div class="cell" onclick="move(5)"></div>
+
+
+<div class="cell" onclick="move(6)"></div>
+<div class="cell" onclick="move(7)"></div>
+<div class="cell" onclick="move(8)"></div>
+
+
+</div>
+
+
+
+<button onclick="restart()">
+Restart
+</button>
+
+
 
 </div>
 
-<button id="restart">Restart Game</button>
+
+
+
+
+<div class="character">
+
+<img src="https://assetsio.gnwcdn.com/Genshin-Impact-Raiden-Shogun-materials%2C-kit%2C-and-Constellations-cover.jpg?width=2234&height=1055&fit=bounds&quality=85&format=jpg&auto=webp">
 
 </div>
 
-<div class="side">
-<img src="ZT1_1b0e527f-72fb-4c00-8398-d817edcbfb68.webp">
-</div>
+
+
 
 </div>
+
+
+
+
 
 <script>
 
-const cells=document.querySelectorAll(".cell");
-const status=document.querySelector(".status");
-const restart=document.getElementById("restart");
 
-let board=["","","","","","","","",""];
-let current="X";
-let playing=true;
-
-const wins=[
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6]
+let board = [
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+""
 ];
 
-cells.forEach((cell,index)=>{
 
-cell.addEventListener("click",()=>{
+let player = "Raiden Shogun";
 
-if(board[index]!==""||!playing)return;
+let gameOver = false;
 
-board[index]=current;
 
-cell.textContent=current=="X"?"⚡":"☯";
+const cells = document.querySelectorAll(".cell");
+
+const turnText = document.getElementById("turn");
+
+
+
+
+function move(index){
+
+
+if(board[index] !== "" || gameOver)
+
+return;
+
+
+
+if(player === "Raiden Shogun"){
+
+board[index]="⚡";
+
+}
+
+else{
+
+board[index]="🌙";
+
+}
+
+
+
+cells[index].innerHTML = board[index];
+
+
+
+if(checkWin()){
+
+
+turnText.innerHTML = player + " Wins!";
+
+gameOver=true;
+
+return;
+
+
+}
+
+
+
+if(!board.includes("")){
+
+
+turnText.innerHTML="Draw!";
+
+gameOver=true;
+
+return;
+
+
+}
+
+
+
+if(player==="Raiden Shogun"){
+
+player="Yixuan";
+
+}
+
+else{
+
+player="Raiden Shogun";
+
+}
+
+
+
+turnText.innerHTML = player + "'s Turn";
+
+
+}
+
+
+
+
+
+function checkWin(){
+
+
+let wins=[
+
+[0,1,2],
+
+[3,4,5],
+
+[6,7,8],
+
+[0,3,6],
+
+[1,4,7],
+
+[2,5,8],
+
+[0,4,8],
+
+[2,4,6]
+
+];
+
+
+
+for(let combo of wins){
+
+
+let a=combo[0];
+
+let b=combo[1];
+
+let c=combo[2];
+
+
+
+if(
+
+board[a] !== "" &&
+
+board[a] === board[b] &&
+
+board[b] === board[c]
+
+){
+
+return true;
+
+}
+
+
+}
+
+
+return false;
+
+
+}
+
+
+
+
+
+function restart(){
+
+
+board=[
+
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+"",
+""
+
+];
+
+
+
+cells.forEach(cell=>{
+
+cell.innerHTML="";
+
+});
+
+
+
+player="Raiden Shogun";
+
+gameOver=false;
+
+
+
+turnText.innerHTML="Raiden Shogun's Turn";
+
+
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>
